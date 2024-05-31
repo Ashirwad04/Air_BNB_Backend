@@ -3,6 +3,7 @@ package Air.BnB_Backend.service;
 import Air.BnB_Backend.entity.AppUser;
 import Air.BnB_Backend.paylod.UserDto;
 import Air.BnB_Backend.repo.AppUserRepository;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 
@@ -44,7 +45,7 @@ public class UserServiceImpl implements UserService {
         user.setName(userDto.getName());
         user.setUsername(userDto.getUsername());
         user.setEmailId(userDto.getEmailId());
-        user.setPassword(userDto.getPassword());
+        user.setPassword(new BCryptPasswordEncoder().encode(userDto.getPassword()));
         return user;
     }
 
